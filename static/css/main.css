@@ -1,0 +1,46 @@
+main{ 
+    /* background-color: cornflowerblue; */
+    background-color: rgb(36, 7, 7);
+}
+.sds{
+
+    width: 300px;
+}
+.dcd{
+    font-size: 20px; 
+    height: 90px; 
+    /* lightskyblue */
+    background-color: rgb(8, 35, 51);     
+    padding-top: 20px; 
+    margin-bottom: 5px; 
+    border-bottom-left-radius: 15px; 
+    border-bottom-right-radius: 15px; 
+    color: white;
+    width: 100%;
+    
+    text-align: center;
+    /* height: 110px; */
+}
+h1{
+    text-align: center;
+
+}
+tr{
+    height: 50px;
+}
+td{
+    color: rgb(217, 205, 251);
+    border-radius: 20px;
+    transition: all 0.5s ease-out;
+}
+td:hover{
+    
+    /* transform: rotate(720deg); */
+	transform: scale(1.2,1.2);
+    /* font-size: 20px; */
+    color: rgb(20, 243, 195);
+    /* background: blue; */
+}
+.k{
+    background-color: black;
+}

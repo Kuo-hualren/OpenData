@@ -1,0 +1,77 @@
+{% extends 'base.html'%}
+
+{% block head%} 
+    <title>臺南旅遊景點</title>
+{% endblock%}
+{% block body%} 
+<main>
+<div class="container">
+  <div class="dcd">
+    <h1>臺南市旅遊景點列表</h1> 
+  </div>
+  <div style="background-color:  violet; border-radius: 3px; color: white;">
+    <h6>總共{{query.total}}筆資料，共{{query.pages}}頁</h6>
+  </div>
+  
+  
+  <!-- class="table  table-striped" -->
+<table  class="table  table-dark">
+    <thead>
+      <tr>
+        <th class="sds" style="width: 20%; text-align: center; font-size: 20px;">景點名稱</th>
+        <th class="sds" style="width: 20%; text-align: center; font-size: 20px;">景點地址</th>
+        <th scope="col" style="width: 20%; text-align: center; font-size: 20px;">行政區域</th>
+        <th scope="col" style="width: 20%; text-align: center; font-size: 20px;">文化種類</th>
+        <th scope="col" style="width: 20%; text-align: center; font-size: 20px;">開放時間</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for i in query.items %}
+        <tr id="tt">
+            <!-- <th scope="row">1</th> -->
+            <td style="width: 20%; text-align: center; vertical-align: middle;">{{ i.author }}</td>
+            <td style="width: 20%; text-align: center; vertical-align: middle;">{{ i.title }}</td>
+            <td style="width: 20%; text-align: center; vertical-align: middle;">{{ i.content }}</td>
+            <td style="width: 20%; text-align: center; vertical-align: middle;">{{ i.opentime }}</td>
+            <td style="width: 20%; text-align: center; vertical-align: middle;">{{ i.aname }}</td>
+            
+        </tr>
+        {% endfor %}
+        
+    </tbody>
+  </table>
+  <nav aria-label="Page navigation example" style="margin-left: 0px;">
+      <ul class="pagination">
+        <div style="display: flex; margin: 0 auto;">
+        {% if query.has_prev %}
+          <li class="page-item" style="border: none; margin: 2px;">
+            <a class="page-link" style="border-radius:8px; border: none; margin: 2px;" href="{{ url_for('index', page=query.prev_num) }}" aria-label="Previous">
+              <span aria-hidden="true">&laquo; prev</span>
+            </a>
+          </li>
+        {% endif %}
+        {% for pg in query.iter_pages(right_current=3) %}
+           {% if pg %}          <!--{% if pg == query.page %}jk{% endif %} 放在class裡-->
+            <li class="{% if pg == query.page %}page-item active{% endif %}" style="border-radius:5px; border: none; margin: 2px;" ><a class="page-link" href="{{ url_for('index', page=pg) }}" style="border-radius: 10px;">{{pg}}</a></li>
+          {% else %}
+          <li class="page-item"><a class="page-link" href="#" style="border-radius:8px; border: none; margin: 3px;">...</a></li>
+          {% endif %}  
+        {% endfor %}
+        {% if query.has_next %}
+          <li class="page-item" style="border: none;  margin: 2px;">
+            <a class="page-link" style="border-radius:8px; border: none; margin: 2px;" href="{{ url_for('index', page=query.next_num) }}" aria-label="Next">
+              <span aria-hidden="true">next &raquo;</span>
+            </a>
+          </li>
+        {% endif %}</div>
+      </ul>
+  </nav>
+</div>
+</main>
+{% endblock%}
+
+<!-- <a class="page-link" href="{{ url_for('index', page=query.page) }}">{{query.page}}</a> -->
+<!-- <td style="width: 20%; text-align: center; vertical-align: middle;">{{ station.address }}</td> -->
+<!-- <td style="width: 20%; text-align: center; vertical-align: middle; ">{{ station.category[0] }}</td> -->
+<!-- <td style="width: 20%; text-align: center; vertical-align: middle;">{{ station.district }}</td> -->
+<!-- <td style="width: 20%; text-align: center; vertical-align: middle;">{{ station.open_time }}</td> -->
